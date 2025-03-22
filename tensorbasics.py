@@ -194,9 +194,7 @@ x_3x3 = x.reshape(3, 3)
 
 # If we for example do:
 y = x_3x3.t()
-print(
-    y.is_contiguous()
-)  # This will return False and if we try to use view now, it won't work!
+print(y.is_contiguous())  # This will return False and if we try to use view now, it won't work!
 # y.view(9) would cause an error, reshape however won't
 
 # This is because in memory it was stored [0, 1, 2, ... 8], whereas now it's [0, 3, 6, 1, 4, 7, 2, 5, 8]
@@ -217,9 +215,7 @@ z = x1.view(-1)  # And -1 will unroll everything
 # If we instead have an additional dimension and we wish to keep those as is we can do:
 batch = 64
 x = torch.rand((batch, 2, 5))
-z = x.view(
-    batch, -1
-)  # And z.shape would be 64x10, this is very useful stuff and is used all the time
+z = x.view(batch, -1)  # And z.shape would be 64x10, this is very useful stuff and is used all the time
 
 # Let's say we want to switch x axis so that instead of 64x2x5 we have 64x5x2
 # I.e we want dimension 0 to stay, dimension 1 to become dimension 2, dimension 2 to become dimension 1
